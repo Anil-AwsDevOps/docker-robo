@@ -11,6 +11,9 @@ services:
     container_name: user
     depends_on:
     - redis
+  cart:
+    build: ./cart
+    image: anill146/cart:1.0.0
   frontend:
     build: ./frontend
     image: anill146/frontend:1.0.0
@@ -20,6 +23,7 @@ services:
     depends_on:
     - catalogue
     - user
+    - cart 
   mongodb:
     build: ./MONGODB # it moves to mongodb directory
     image: anill146/mongodb:1.0.0 # docker build -t --network roboshop --name mongodb  anil/mongodb:1.0.0
