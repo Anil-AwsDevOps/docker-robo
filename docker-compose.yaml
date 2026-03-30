@@ -14,6 +14,9 @@ services:
   cart:
     build: ./cart
     image: anill146/cart:1.0.0
+  shipping:
+    build: ./shipping
+    image: anill146/shipping:1.0.0 
   frontend:
     build: ./frontend
     image: anill146/frontend:1.0.0
