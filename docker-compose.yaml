@@ -1,6 +1,6 @@
 services:
   catalogue:
-    build: ./catalogue
+    build: ./CATALOGUE
     image: anill146/catalogue:1.0.0
     container_name: catalogue
     depends_on:
@@ -21,7 +21,7 @@ services:
     - catalogue
     - user
   mongodb:
-    build: ./mongodb # it moves to mongodb directory
+    build: ./MONGODB # it moves to mongodb directory
     image: anill146/mongodb:1.0.0 # docker build -t --network roboshop --name mongodb  anil/mongodb:1.0.0
     container_name: mongo 
   redis:
