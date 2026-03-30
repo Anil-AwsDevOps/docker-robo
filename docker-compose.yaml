@@ -6,11 +6,29 @@ services:
     container_name: catalogue
     depends_on:
     - mongodb
+  user:
+    build:
+      dockerfile: user.Dockerfile
+    image: anil/user:1.0.0
+    container_name: user
+    depends_on:
+    - redis
+  frontend:
+    build:
+      dockerfile: frontend.Dockerfile
+    image: anil/frontend:1.0.0
+    container_name: front 
+    depends_on:
+    - catalogue
+    - user
   mongodb:
     build:
       dockerfile: mongodb.Dockerfile # it moves to mongodb directory
     image: anil/mongodb:1.0.0 # docker build -t --network roboshop --name mongodb  anil/mongodb:1.0.0
     container_name: mongo 
+  redis:
+    image: redis:7.0
+    container_name: redis
 
 networks:
   default:
