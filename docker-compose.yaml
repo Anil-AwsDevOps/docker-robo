@@ -11,12 +11,37 @@ services:
     container_name: user
     depends_on:
     - redis
+    - mongodb
   cart:
     build: ./cart
     image: anill146/cart:1.0.0
+    container_name: cart
+    depends_on:
+    - redis
+    - catalogue
   shipping:
     build: ./shipping
     image: anill146/shipping:1.0.0 
+    container_name: shipping
+    depends_on:
+    - mysql
+    - cart
+  payment:
+    build: ./payment
+    image: anill146/payment:1.0.0
+    container_name: payment
+    environment:
+      CART_HOST: "cart"
+      CART_PORT: "8080"
+      USER_HOST: "user"
+      USER_PORT: "8080"
+      AMQP_HOST: "rabbitmq"
+      AMQP_USER: roboshop
+      AMQP_PASS: "roboshop123"
+    depends_on:
+    - rabbitmq
+    - cart
+    - user
   frontend:
     build: ./frontend
     image: anill146/frontend:1.0.0
@@ -27,6 +52,8 @@ services:
     - catalogue
     - user
     - cart 
+    - shipping
+    - payment
   mongodb:
     build: ./MONGODB # it moves to mongodb directory
     image: anill146/mongodb:1.0.0 # docker build -t --network roboshop --name mongodb  anil/mongodb:1.0.0
