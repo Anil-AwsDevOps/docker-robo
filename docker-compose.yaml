@@ -2,21 +2,21 @@ services:
   catalogue:
     build:
       dockerfile: catalogue.Dockerfile
-    image: anil/catalogue:1.0.0
+    image: anill146/catalogue:1.0.0
     container_name: catalogue
     depends_on:
     - mongodb
   user:
     build:
       dockerfile: user.Dockerfile
-    image: anil/user:1.0.0
+    image: anill146/user:1.0.0
     container_name: user
     depends_on:
     - redis
   frontend:
     build:
       dockerfile: frontend.Dockerfile
-    image: anil/frontend:1.0.0
+    image: anill146/frontend:1.0.0
     container_name: front 
     ports:
       - "80:80"
@@ -26,7 +26,7 @@ services:
   mongodb:
     build:
       dockerfile: mongodb.Dockerfile # it moves to mongodb directory
-    image: anil/mongodb:1.0.0 # docker build -t --network roboshop --name mongodb  anil/mongodb:1.0.0
+    image: anill146/mongodb:1.0.0 # docker build -t --network roboshop --name mongodb  anil/mongodb:1.0.0
     container_name: mongo 
   redis:
     image: redis:7.0
