@@ -24,3 +24,5 @@ CMD [ "node","server.js" ]
 #     MONGO_URL="mongodb://mongodb:27017/catalogue"
 
 # CMD [ "node","server.js" ]
+#docker
+
